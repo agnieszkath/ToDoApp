@@ -1,0 +1,114 @@
+
+{% extends "template.html" %}
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/">Home</a>
+                    </li>
+                    <li role="presentation"><a href="/taskss">Your Task</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Python To Do List App</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h3>Welcome to To Do List Aplication</h3>
+            <div class="add-task">
+            <form class="form-inline" role="form" action="{{ url_for('new_task') }}" method=post class=new-task>
+                <div class="form-group">
+                    <label for="name">Task</label>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Task" >
+                </div>
+                <div class="form-group">
+                    <label for="due_date">Date</label>
+                    <input name="due_date" type="date" class="form-control" id="due_date">
+                </div>
+                <div class="form-group">
+                    <label>Priority:</label>
+                   <select name="priority" class="form-control" width="100px" >
+                       <option value="0">0</option>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                       <option value="6">6</option>
+                       <option value="7">7</option>
+                       <option value="8">8</option>
+                       <option value="9">9</option>
+                       <option value="10">10</option>
+                   </select>
+                </div>
+                <br>
+
+                <input type="submit" class="btn btn-primary" value="Save"></button>
+            </form>
+            </div>
+        </div>
+
+
+
+        <div class="jumbotron">
+            <h2>Your Tasks</h2>
+            <div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th><strong>Task Name</strong></th>
+                    <th><strong>Due Time</strong></th>
+                    <th><strong>Priority</strong></th>
+                    <th><b>Actions</b></th>
+                </tr>
+                </thead>
+                {% for o in open_tasks %}
+                <tbody>
+                <tr>
+                    <td>{{ o.name }}</td>
+                    <td>{{ o.due_date }}</td>
+                    <td>{{ o.priority }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_entry', task_id = o.task_id) }}">Delete</a>  -
+                        <a href="{{ url_for('complete', task_id = o.task_id) }}">Complete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+
+
+            <div>
+            <h2>Ended Tasks</h2>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th><strong>Task Name</strong></th>
+                    <th><strong>Due Time</strong></th>
+                    <th><strong>Priority</strong></th>
+                    <th><b>Actions</b></th>
+                </tr>
+                </thead>
+                {% for c in closed_tasks %}
+                <tbody>
+                <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.due_date }}</td>
+                    <td>{{ c.priority }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_entry', task_id = c.task_id) }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+
+        </div>
+
+
+    </div>
+{% endblock %}
+
+

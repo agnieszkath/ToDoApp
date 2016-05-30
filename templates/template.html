@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Python To Do List App</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">-->
+
+</head>
+  <body>
+    <br/>
+    <div class="container" >
+      {% for message in get_flashed_messages() %}
+        <div class="jumbotron" style="background: #ADD8E6; padding: 2px" >
+      <div class=flash >{{ message }}</div>
+      {% endfor %}
+        </div>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+
+  <footer class="footer">
+      <p class="text-center">&copy; Agnieszka Pietka 2016</p>
+  </footer>
+</html>
