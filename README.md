@@ -34,7 +34,7 @@ $ python database.py
 $ python flaskapp.py
  * Running on http://localhost:500/
 ```
-Now open a browser and visit [link] http://localhost:500/
+Now open a browser and visit  http://localhost:500/
 
 
 
